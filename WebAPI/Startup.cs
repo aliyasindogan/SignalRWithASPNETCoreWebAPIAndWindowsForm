@@ -1,9 +1,11 @@
+using Bussines;
+using Bussines.HubConfig;
+using Bussines.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using WebAPI.HubConfig;
 
 namespace WebAPI
 {
@@ -26,6 +28,7 @@ namespace WebAPI
                     .AllowAnyHeader();
             }));
             services.AddSignalR();
+            services.AddScoped<IWeatherForecastService, WeatherForecastService>();
             services.AddControllers();
         }
 
@@ -46,7 +49,6 @@ namespace WebAPI
                 endpoints.MapControllers();
                 endpoints.MapHub<WeatherForecastHub>("/myhub");
             });
-            //app.UseSignalR(routes => { routes.MapHub<WeatherForecastHub>("/weatherforecast"); });
         }
     }
 }
