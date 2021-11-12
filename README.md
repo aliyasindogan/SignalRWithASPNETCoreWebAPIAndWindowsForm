@@ -16,5 +16,7 @@ SignalR With ASP.NET Core Web API And Windows Form
 </tr>
 </table>
 
+<h3>Projenin çalışır hali için videoyu tıklayınız.</h3>
 
 [![Watch the video](http://aliyasindogan.com/images/signalr.png)](https://youtu.be/2LAFTqcBQ3s)
+
