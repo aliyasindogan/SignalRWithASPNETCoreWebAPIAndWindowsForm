@@ -1,9 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.SignalR;
-using System;
-using System.Linq;
-using WebAPI.HubConfig;
-using WebAPI.TimerFeatures;
+﻿using Bussines;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
 {
@@ -11,29 +7,17 @@ namespace WebAPI.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private readonly IHubContext<WeatherForecastHub> _hub;
+        private readonly IWeatherForecastService _weatherForecastService;
 
-        public WeatherForecastController(IHubContext<WeatherForecastHub> hub)
+        public WeatherForecastController(IWeatherForecastService weatherForecastService)
         {
-            _hub = hub;
+            _weatherForecastService = weatherForecastService;
         }
 
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult GetData()
         {
-            var rng = new Random();
-            var data = Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            }).ToList();
-            var timerManager = new TimerManager(() => _hub.Clients.All.SendAsync("transferdata", data));
+            _weatherForecastService.GetData();
             return Ok(new { Message = "Request complete" });
         }
     }
