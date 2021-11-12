@@ -15,3 +15,6 @@ SignalR With ASP.NET Core Web API And Windows Form
 <td><strong>layered</strong> </td><td>SignalR projesi katmanlı mimaride (Bussines,Entities,WebAPI ve Windows Form) uygulandı.</td>
 </tr>
 </table>
+
+
+[![Watch the video](http://aliyasindogan.com/images/signalr.png)](https://youtu.be/2LAFTqcBQ3s)
